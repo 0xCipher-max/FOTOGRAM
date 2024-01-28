@@ -13,22 +13,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { SigninValidation } from "@/lib/validation";
 import { z } from "zod";
-import Loader from "@/components/ui/shared/Loader";
+import Loader from "@/components/shared/Loader";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  useSignInAccount,
-} from "@/lib/react-query/queriesAndMutations";
+import { useSignInAccount } from "@/lib/react-query/queriesAndMutations";
 import { useUserContext } from "@/context/AuthContext";
 
 const SignInForm = () => {
   const { toast } = useToast();
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
-  const { mutateAsync: signInAccount, isLoading} =
-    useSignInAccount();
+  const { mutateAsync: signInAccount, isLoading } = useSignInAccount();
 
   const navigate = useNavigate();
 
-  // 1. Define your form. 
+  // 1. Define your form.
   const form = useForm<z.infer<typeof SigninValidation>>({
     resolver: zodResolver(SigninValidation),
     defaultValues: {
@@ -40,7 +37,6 @@ const SignInForm = () => {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof SigninValidation>) {
     try {
-
       // Sign user into the session just after signing up
       const session = await signInAccount({
         email: values.email,
