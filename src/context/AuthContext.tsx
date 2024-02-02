@@ -10,7 +10,7 @@ export const INITIAL_USER = {
 import { IContextType, IUser } from "../types";
 import { getCurrentUser } from "@/lib/appwrite/api";
 import { useNavigate } from "react-router-dom";
-
+//dummy commit
 const INITIAL_STATE = {
   user: INITIAL_USER,
   isLoading: false,
